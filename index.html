@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALARM CLOCK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@100;200;300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="alarm">
+        <div class="container">
+        </div>
+        <a href="" class="add-alarm">
+            <h3><span><i class="fa-regular fa-bell"></i></span>Add alarm</h3>
+        </a>
+        <div class="content">
+            <form>
+                <div class="form-content">
+                    <input type="text" placeholder="Alarm name">
+                    <div>
+                        <div class="inputs">
+                            <label for="hour">Hour</label>
+                            <input type="number" id="hour" placeholder="Enter Hour">
+                        </div>
+                        <div class="inputs">
+                            <label for="mins">Minute</label>
+                            <input type="number" id="mins" placeholder="Enter Minute">
+                        </div>
+                        <div class="inputs ">
+                            <label for="">session</label>
+                            <div>
+                                <span style="color: white;">am</span><input type="radio" name="am/pm" id="AM"
+                                    class="radio" style="margin-left: 4px;">
+                                <span style="color: white; margin-left: 10px;">pm</span><input type="radio" name="am/pm"
+                                    id="PM" class="radio" style="margin-left: 4px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button class="cancel">Cancel</button>
+                    <button>Set Alarm</button>
+                </div>
+            </form>
+            <div class="alarm-container">
+                <div class="all-alarms">
+                    <p class="state">no alarm yet</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+    <script src="./app.js"></script>
+</body>
+
+</html>
