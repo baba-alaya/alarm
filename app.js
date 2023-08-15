@@ -8,6 +8,8 @@ const inputMin = document.querySelector('#mins')
 const allAlarm = document.querySelector('.all-alarms')
 const state = document.querySelector('.state')
 const radio = document.querySelectorAll('.radio')
+const time = document.querySelector('.time')
+const alarmSet = document.querySelector('.alarm-set')
 
 // declaring variables
 let eachAlarmData = {
@@ -30,6 +32,7 @@ addAlarm.addEventListener('click', (e) => {
     if (!form.classList.contains('display-block')) {
         form.classList.add('display-block')
         alarmContainer.style.display = 'none'
+        alarmSet.style.display = 'none'
     }
 })
 
@@ -38,6 +41,7 @@ cancel.addEventListener('click', (e) => {
     if (form.classList.contains('display-block')) {
         form.classList.remove('display-block')
         alarmContainer.style.display = 'block'
+        alarmSet.style.display = 'block'
     }
 })
 
@@ -81,9 +85,10 @@ setInterval(() => {
 
     h = h < 10 ? '0' + h : h
     m = m < 10 ? '0' + m : m
-    // s = s < 10 ? '0' + s : s
+    s = s < 10 ? '0' + s : s
 
     currentTime = `${h}:${m}:${s} ${session}`
+    time.innerHTML = currentTime
     s = '00'
     seconds = Number(s)
     if (alarmTime == currentTime) {
@@ -92,6 +97,7 @@ setInterval(() => {
         const dismissBtn = document.querySelectorAll('.dismiss-btn');
         dismissBtn.forEach(btn => {
             btn.innerHTML = 'Dismiss Alarm';
+            btn.style.cursor = 'pointer';
         });
     }
 
@@ -110,7 +116,8 @@ const pushAlarm = () => {
     let alarmContent = ''
     let ButtonStatus = 'In Progress'
     const overAllAlarm = JSON.parse(window.localStorage.getItem('ovralarm'))
-    overAllAlarm.forEach(function (value) {
+    alarmSet.innerHTML = `${overAllAlarm.length} alarm set`
+    overAllAlarm?.forEach(function (value) {
         alarmContent += `
                 <div class="each-alarm">
                 <div class="text">
@@ -127,10 +134,13 @@ const pushAlarm = () => {
     const dismissBtn = document.querySelectorAll('.dismiss-btn');
     dismissBtn.forEach(btn => {
         btn.classList.add('display-block');
-        btn.addEventListener('click', () => {
-            track.pause();
-            btn.innerHTML = 'Completed';
-        });
+        if (btn.innerHtml == 'Dismiss Alarm') {
+            btn.addEventListener('click', () => {
+                track.pause()
+                btn.innerHTML = 'Completed'
+                btn.style.cursor = 'not-allowed';
+            })
+        }
     });
 }
 
@@ -157,10 +167,10 @@ form.addEventListener('submit', (e) => {
         ovrAlarmData.push(eachAlarmData)
         window.localStorage.setItem('ovralarm', JSON.stringify(ovrAlarmData))
         pushAlarm()
-        state.style.display = 'none'
         alert(`alarm set for ${eachAlarmData.Ahour}:${eachAlarmData.Amin}${eachAlarmData.session} successfully`)
         form.classList.remove('display-block')
         alarmContainer.style.display = 'block'
+        alarmSet.style.display = 'block'
         getTime()
 
         eachAlarmData = {
@@ -176,7 +186,9 @@ form.addEventListener('submit', (e) => {
     }
 })
 
-window.onload = pushAlarm
+
+window.addEventListener('load', pushAlarm)
+
 
 
 

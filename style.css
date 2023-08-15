@@ -23,9 +23,6 @@
 
 h3 {
     color: black;
-    padding: 10px 20px 20px 0;
-    display: flex;
-    justify-content: end;
     font-size: 20px;
     font-weight: 300;
 }
@@ -39,12 +36,19 @@ h3 {
     margin: auto;
 }
 
+.time-contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 form {
     display: none;
     background-color: black;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 1px 1px 4px grey;
+    margin-top: 80px;
 }
 
 .form-content {
@@ -129,9 +133,15 @@ form div:last-child button {
     color: white;
     margin-top: 20px;
     border-radius: 9px;
-    height: 35vh;
+    height: calc(100vh - 150px);
     overflow-y: auto;
     box-shadow: 1px 1px 4px grey;
+}
+
+.alarm-set {
+    padding-block-start: 20px;
+    text-align: center;
+    font-size: 30px;
 }
 
 ::-webkit-scrollbar {
@@ -142,7 +152,8 @@ form div:last-child button {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 5px;
+    padding: 10px;
+    padding-top: 20px;
 }
 
 .each-alarm {
@@ -155,17 +166,19 @@ form div:last-child button {
     border-radius: 6px;
 }
 
-.all-alarms p {
-    text-align: center;
-    font-size: 30px;
-}
-
 .each-alarm .text>div:first-child {
     font-size: 20px;
+    cursor: not-allowed;
 }
 
 .each-alarm .text>div:last-child {
     font-size: 25px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .dismiss-btn {
@@ -177,6 +190,7 @@ form div:last-child button {
     color: white;
     cursor: pointer;
     display: none;
+    cursor: not-allowed;
 }
 
 /* togglers */
@@ -209,10 +223,23 @@ form div:last-child button {
         justify-content: center;
         flex-direction: column;
         gap: 0px;
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     .dismiss-alarm {
         width: 50%;
+    }
+
+    .alarm {
+        padding: 10px;
+    }
+
+    .time-contain {
+        padding-top: 13px;
+    }
+
+    .add-alarm span,
+    .add-alarm h3 {
+        font-size: 25px;
     }
 }
